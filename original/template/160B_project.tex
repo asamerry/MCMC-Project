@@ -1,0 +1,158 @@
+\documentclass{article}
+
+
+\usepackage{graphicx} % Required for inserting images
+\usepackage{natbib}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,citecolor=black, linkcolor=black}
+
+
+\usepackage{pgffor}
+
+\foreach \x in {A,B,...,Z,a,b,...,z} 
+{
+  \expandafter\xdef\csname cal\x\endcsname{\noexpand 
+	\ensuremath{\noexpand\mathcal{\x}}}
+  \expandafter\xdef\csname scr\x\endcsname{\noexpand 
+	\ensuremath{\noexpand\mathscr{\x}}}
+  \expandafter\xdef\csname bb\x\endcsname{\noexpand 
+	\ensuremath{\noexpand\mathbb{\x}}}
+  \expandafter\xdef\csname rm\x\endcsname{\noexpand 
+	\ensuremath{\noexpand\mathrm{\x}}}
+  \expandafter\xdef\csname bf\x\endcsname{\noexpand 
+	\ensuremath{\noexpand\mbf{\x}}}
+}
+
+
+\newcommand{\req}[1]{(\ref{#1})}
+
+
+\title{\textsc{160B Project Title}}
+\author{Name 1, \quad Name 2 \quad \dots }
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\section{Introduction}
+
+In one page describe the contents of the project providing an
+outline of each of the sections of the report.
+
+The report should follow the outline of Lecture 8 on Markov
+Chain Monte Carlo (MCMC) and message encryption/decryption. 
+You can follow the provided section headings or modify based on
+your emphasis.
+
+Your should pick an emphasis for your project (declaring
+it in the introduction) from one of the following
+three categories.
+\begin{enumerate}
+\item Applications -- For this you should explain other
+applications and/or expand upon aspects of message decryption
+that would be required for real world applications (e.g. handling
+punctuation or special characters.)
+\item Coding -- For this emphasis you should address aspects
+related to the implementation of MCMC algorithms (e.g., run time,
+memory usage, parallelization etc). Document all improvements
+made to the current code.
+\item Theory -- For this option you are expected to include
+proofs (not necessarily original). For example, those from
+our lectures on Markov chains.
+\end{enumerate}
+
+In the report you must cite at least three references.
+\begin{itemize}
+\item[--] One of them must be \cite{connor2003}
+\item[--] Another must be \cite{Ross2019} (see Section 4.9).
+\item[--] Any other reference of your choice added
+to \verb|160B_project.aux|
+\end{itemize}
+
+
+Regardless of which emphasis you chose (applications,
+theory, or coding) your report should 
+propose a modification to the algorithm section of Lecture~8.
+This modification can can be made to the proposal
+probability
+\begin{align} \label{qxy} \rmq(x,y) 
+\end{align}
+or the acceptance probability $a(x,y)$ (see general the
+formula $(2.2)$ in \cite{connor2003}).
+Recall that $\req{qxy}$ proposes a move from a permutation
+$x$ to a permutation $y$ which is accepted with
+probability $a(x,y)$. The provided 
+\verb|README.pdf| document shows where to find these 
+probabilities are found in the code.
+
+
+\section{Message encryption/decryption}
+
+Provide a brief outline of what is accomplished in this section.
+For your chosen emphasis please address the following.
+
+
+\subsection{Permutations on alphabets}
+
+Define alphabets and permutations to show how they can be 
+used to encrypt text messages. Provide  examples
+along the lines of (but different from) Lecture~8.
+
+
+\subsection{The likelihood of text}
+
+Define the likelihood function that reports how likely a given
+text is to belong to the english language. Discuss how the
+construction of this likelihood would be done in practice
+including the ``training" part of the MCMC algorith that
+in our cases uses the novel ``War and Peace" 
+(see \verb|README.pdf| in the code).
+
+\section{Markov Chain Monte Carlo}
+
+This section should describe the MCMC algorithm and your
+proposed modification. You can focus the content
+based on your emphasis but the following subsections
+should be present.
+
+\subsection{How it works}
+
+This section should address how MCMC decodes the encrypted
+message, making an explicit connection to 
+the fact that finite, irreducible
+nd aperiodic Markov chains converge to their stationary 
+distributions.
+
+\subsection{Proposed modification}
+
+Propose a modification as described below $\req{qxy}$  and
+describe the expected impact of this modification. The
+latter can be an educated guess. 
+
+\section{Results and conclusions}
+
+Document the impact of your modification on
+a decoding of an encrypted message of your choice.
+It is okay if the results differ from what you expected
+as long as you try to make sense of them.
+
+\appendix
+
+\section{Code}
+
+You can use the verbatim environment to include \verb|code|.
+{\small
+\begin{verbatim}
+    print("Hello")
+\end{verbatim}
+}
+
+\section{Supplements (optional)}
+
+\bibliography{160B_project}
+\bibliographystyle{agsm} 
+
+\end{document}
